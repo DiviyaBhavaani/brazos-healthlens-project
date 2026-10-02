@@ -1,0 +1,5 @@
+# Raw downloads are large and re-downloadable; the built JSON in web/data is committed.
+data/raw/
+__pycache__/
+.venv/
+.DS_Store

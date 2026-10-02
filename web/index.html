@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brazos HealthLens</title>
+  <meta name="description" content="Explore chronic disease estimates across Texas census tracts, with a focus on the Brazos Valley.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- D3 for drawing and TopoJSON client for decoding map geometry -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <h1>Brazos HealthLens</h1>
+      <p class="lede">Chronic disease, risk behaviors and community context across Texas census tracts. Start with the Brazos Valley, then compare anywhere in the state.</p>
+    </div>
+    <p id="synthetic-banner" class="banner" hidden>Demo mode: these numbers are synthetic and not real health data.</p>
+  </header>
+
+  <p id="load-status" class="loading">Loading tract data…</p>
+
+  <main>
+    <div class="row top">
+      <aside id="controls" class="panel controls" aria-label="Controls"></aside>
+
+      <section class="panel map-panel" aria-labelledby="map-h">
+        <h2 id="map-h">Map</h2>
+        <div id="map" class="map"></div>
+        <div id="map-legend" class="legend"></div>
+        <p class="hint">Scroll to zoom, drag to pan, click a tract to select it. Press Esc to clear.</p>
+      </section>
+
+      <section class="panel profile-panel" aria-labelledby="profile-h">
+        <h2 id="profile-h">Tract profile</h2>
+        <div id="profile"></div>
+      </section>
+    </div>
+
+    <div class="row bottom">
+      <section class="panel pc-panel" aria-labelledby="pc-h">
+        <h2 id="pc-h">Compare many measures</h2>
+        <p class="hint">Each line is a tract. Drag up or down on an axis to keep only tracts in that range; click outside the range on the axis to clear it.</p>
+        <div id="parcoords"></div>
+      </section>
+
+      <section class="panel scatter-panel" aria-labelledby="scatter-h">
+        <h2 id="scatter-h">Relationships</h2>
+        <div class="pickers">
+          <label>X <select id="scatter-x"></select></label>
+          <label>Y <select id="scatter-y"></select></label>
+        </div>
+        <div id="scatter"></div>
+        <p id="scatter-r" class="muted small"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="peers-h">
+        <h2 id="peers-h">Similar and unusual tracts</h2>
+        <div id="peers"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p id="source"></p>
+    <p>PLACES values are model-based estimates built partly from demographic data. Use the confidence intervals, and treat patterns as starting points for local investigation rather than conclusions.</p>
+  </footer>
+</body>
+</html>
